@@ -1,0 +1,22 @@
+{
+  "business_rules": [
+    {
+      "id": "BR-EMAIL-RESEND",
+      "name": "email_resend_requires_failed_state",
+      "aliases": ["resend only failed email", "failed state resend rule"],
+      "source_file": "knowledge/business_rules.json"
+    },
+    {
+      "id": "BR-POLICY-COMPARISON",
+      "name": "policy_comparison_requires_same_product_scope",
+      "aliases": ["comparison scope rule"],
+      "source_file": "knowledge/business_rules.json"
+    },
+    {
+      "id": "BR-DOCUMENT-UPLOAD",
+      "name": "document_upload_processing_requires_supported_file_type",
+      "aliases": ["supported file type rule", "upload processing rule"],
+      "source_file": "knowledge/business_rules.json"
+    }
+  ]
+}

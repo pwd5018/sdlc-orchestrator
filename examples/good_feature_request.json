@@ -1,0 +1,55 @@
+{
+  "feature_description": "Add a self-service CSV export workflow for the release readiness dashboard so program managers can export the exact filtered dataset they are reviewing without manually copying rows into spreadsheets. Today, release coordinators open the dashboard, apply filters for product line, environment, and release window, then retype or copy visible values into Excel for stakeholder updates. The new workflow should let authorized users click Export CSV from the dashboard, generate a file that includes the active filters, a UTC export timestamp, and the visible readiness rows, and record an audit event for each export attempt. The export should respect existing row-level visibility rules so users only receive records they are already allowed to see. The first version only needs ad hoc CSV export from the dashboard and should not include scheduling, email delivery, PDF export, or historical archive storage.",
+  "mode": "full",
+  "context": {
+    "product_area": "release readiness reporting",
+    "target_release": "Q3 planning cycle",
+    "systems": [
+      "release-readiness-dashboard-ui",
+      "reporting-service",
+      "audit-logging-service"
+    ],
+    "users": [
+      "program managers",
+      "release coordinators",
+      "delivery leads"
+    ],
+    "business_rules": [
+      "Exported rows must match the currently applied dashboard filters.",
+      "Only authorized users can export.",
+      "The file must use the reporting glossary column names.",
+      "Timestamps should be UTC."
+    ],
+    "data_inputs": [
+      "active dashboard filters",
+      "visible readiness rows",
+      "requesting user identity"
+    ],
+    "data_outputs": [
+      "CSV file",
+      "audit event",
+      "export timestamp metadata"
+    ],
+    "risks": [
+      "permission drift between UI visibility and export behavior",
+      "large exports impacting response time"
+    ],
+    "examples": [
+      "A program manager exports filtered records for Product A and Environment=Stage.",
+      "A release coordinator receives a user-friendly error if export generation fails."
+    ]
+  },
+  "attachments": [
+    {
+      "name": "dashboard-filter-export-notes.txt",
+      "type": "text/plain",
+      "summary": "Notes from release operations walkthrough describing manual spreadsheet steps."
+    }
+  ],
+  "notes": [
+    "Primary business goal is to reduce manual reporting effort and improve accuracy.",
+    "Permissions should align with existing readiness dashboard access rules.",
+    "Non-functional expectation: normal exports should begin within 3 seconds.",
+    "Edge cases include empty result sets, large result sets, and permission changes during export."
+  ]
+}

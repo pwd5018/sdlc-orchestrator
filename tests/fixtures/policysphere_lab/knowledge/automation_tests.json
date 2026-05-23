@@ -1,0 +1,22 @@
+{
+  "automation_tests": [
+    {
+      "id": "AT-EMAIL-RESEND",
+      "name": "EmailHistoryResendTest",
+      "aliases": ["email resend automation", "history resend selenium test"],
+      "source_file": "knowledge/automation_tests.json"
+    },
+    {
+      "id": "AT-POLICY-COMPARISON",
+      "name": "PolicyComparisonWorkflowTest",
+      "aliases": ["policy comparison automation"],
+      "source_file": "knowledge/automation_tests.json"
+    },
+    {
+      "id": "AT-DOCUMENT-UPLOAD",
+      "name": "DocumentUploadRetryWorkflowTest",
+      "aliases": ["document upload automation", "upload retry test"],
+      "source_file": "knowledge/automation_tests.json"
+    }
+  ]
+}

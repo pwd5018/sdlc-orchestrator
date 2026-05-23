@@ -1,0 +1,151 @@
+{
+  "feature_description": "Prepare a full implementation-planning handoff for a new dashboard capability that lets authorized customer success managers and support leads configure and send account health notification digests. The UI should let eligible users define digest recipients, frequency, severity filters, and a quiet-hours window. The backend should validate the configuration, persist it, and trigger outbound delivery through the existing notification service. Delivery attempts and configuration changes must be audit logged. Unauthorized users must not see or use the digest management controls. The team wants a practical engineering handoff package for sprint planning, not production code.",
+  "mode": "full",
+  "context": {
+    "product_area": "Account health dashboard",
+    "ui_interactions": {
+      "entry_points": [
+        "Digest settings panel from the account health dashboard",
+        "Create digest action in the notification preferences area"
+      ],
+      "user_flow": [
+        "Eligible user opens digest settings",
+        "User selects recipient list, frequency, severity filters, and quiet-hours window",
+        "User saves the digest configuration",
+        "System validates the input, persists the configuration, and shows success or failure feedback"
+      ],
+      "states": [
+        "Empty state when no digests exist",
+        "Editable list state for existing digest configurations",
+        "Validation errors for invalid recipient and schedule combinations",
+        "Permission-restricted state where management controls are hidden or disabled"
+      ],
+      "accessibility_expectations": [
+        "Keyboard-accessible form controls",
+        "Screen-reader-readable validation and save feedback"
+      ]
+    },
+    "api_service_interactions": {
+      "candidate_endpoints": [
+        "POST /account-health/digests",
+        "PUT /account-health/digests/{digestId}",
+        "GET /account-health/digests",
+        "POST /account-health/digests/{digestId}/send-test"
+      ],
+      "request_inputs": [
+        "authenticated user identity and role context",
+        "recipient list",
+        "frequency",
+        "severity filters",
+        "quiet-hours window",
+        "account or tenant scope"
+      ],
+      "downstream_services": [
+        "notification-service",
+        "authorization-service",
+        "audit-log-service"
+      ],
+      "expected_responses": [
+        "persisted digest configuration metadata",
+        "validation errors with actionable field-level detail",
+        "authorization failure when user lacks permission"
+      ]
+    },
+    "data_dependencies": {
+      "entities": [
+        "notification digest configuration",
+        "recipient preference record",
+        "delivery attempt audit event"
+      ],
+      "important_fields": [
+        "recipient email or user reference",
+        "digest frequency",
+        "severity filter set",
+        "quiet-hours start and end",
+        "last modified by",
+        "last sent timestamp"
+      ],
+      "data_conditions": [
+        "accounts with no active alerts",
+        "accounts with many alerts across severity bands",
+        "recipient lists with internal and external users",
+        "tenant-specific quiet-hours defaults"
+      ]
+    },
+    "permissions": {
+      "allowed_roles": [
+        "customer_success_manager",
+        "support_lead"
+      ],
+      "restricted_roles": [
+        "viewer",
+        "analyst_read_only"
+      ],
+      "business_expectation": "Only authorized roles can create, update, test-send, or disable digest configurations."
+    },
+    "audit_logging": {
+      "required_events": [
+        "digest configuration created",
+        "digest configuration updated",
+        "digest configuration disabled",
+        "digest send requested",
+        "digest send failed",
+        "digest access denied"
+      ],
+      "minimum_fields": [
+        "actor identity",
+        "actor role",
+        "timestamp",
+        "tenant or account scope",
+        "digest configuration id",
+        "changed fields summary",
+        "delivery outcome"
+      ]
+    },
+    "error_handling": {
+      "user_visible_failures": [
+        "invalid recipient entry",
+        "invalid quiet-hours window",
+        "duplicate digest configuration for the same scope and frequency",
+        "notification service unavailable",
+        "authorization denied"
+      ],
+      "behavior_expectations": [
+        "No partial configuration should be saved on validation failure",
+        "Users should receive actionable field-level validation feedback",
+        "Retry or support guidance should be shown for transient delivery failures"
+      ]
+    },
+    "configuration": {
+      "candidate_settings": [
+        "default quiet-hours window",
+        "maximum recipients per digest",
+        "allowed digest frequencies",
+        "test-send rate limit"
+      ],
+      "admin_expectations": [
+        "Operations or admins may need to tune defaults without code changes"
+      ]
+    },
+    "non_functional_requirements": {
+      "performance": "Saving a digest configuration should feel responsive for typical inputs.",
+      "reliability": "Configuration changes should not be lost or duplicated if the user retries after a transient failure.",
+      "security": "Authorization must be enforced server-side for every read, write, and send-test action.",
+      "auditability": "Configuration changes and send attempts must be traceable.",
+      "maintainability": "The handoff should identify practical implementation slices and dependencies for sprint planning."
+    },
+    "out_of_scope": [
+      "SMS delivery",
+      "Teams integration",
+      "Cross-project notification preferences",
+      "Database persistence redesign",
+      "Asynchronous queue redesign"
+    ]
+  },
+  "attachments": [],
+  "notes": [
+    "Focus on engineering handoff detail, not production code generation.",
+    "The notification service already exists, but its exact request contract may need clarification.",
+    "Permissions, auditability, validation, and operational defaults are the highest-risk planning areas."
+  ]
+}

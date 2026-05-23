@@ -1,0 +1,27 @@
+{
+  "feature_description": "Create a story-focused workflow for adding a release readiness CSV export button to the dashboard. Program managers currently copy filtered dashboard rows into spreadsheets by hand when preparing stakeholder updates. They need a quicker way to export the exact filtered view they are already reviewing. The new behavior should add an Export CSV action near the filter bar, generate a CSV with the currently visible records, include the active filters in the output metadata, and write an audit event for each export attempt. The first increment only covers on-demand CSV export and should not include PDF export, scheduled delivery, or historical archives.",
+  "mode": "story_only",
+  "context": {
+    "target_users": [
+      "program managers",
+      "release coordinators"
+    ],
+    "current_behavior": "Manual copy/paste into spreadsheets",
+    "desired_behavior": "One-click CSV export from current filtered view",
+    "systems_impacted": [
+      "release-readiness-dashboard-ui",
+      "reporting-service",
+      "audit-logging-service"
+    ],
+    "business_rules": [
+      "Export must respect existing visibility permissions.",
+      "Only active filtered rows should be exported."
+    ]
+  },
+  "attachments": [],
+  "notes": [
+    "This request should be detailed enough for intake, requirements, and Jira story generation.",
+    "Normal exports should begin within 3 seconds for standard filtered result sets.",
+    "Export metadata should include UTC timestamp and active filter summary."
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "test_history": [
+    {
+      "id": "TH-EMAIL-RESEND",
+      "name": "Email resend regression history",
+      "aliases": ["resend history", "failed email regression history"],
+      "source_file": "knowledge/test_history.json"
+    },
+    {
+      "id": "TH-POLICY-COMPARISON",
+      "name": "Policy comparison regression history",
+      "aliases": ["comparison regression history"],
+      "source_file": "knowledge/test_history.json"
+    },
+    {
+      "id": "TH-DOCUMENT-UPLOAD",
+      "name": "Document upload retry history",
+      "aliases": ["upload retry history", "upload processing history"],
+      "source_file": "knowledge/test_history.json"
+    }
+  ]
+}

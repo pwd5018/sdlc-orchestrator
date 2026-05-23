@@ -1,0 +1,46 @@
+{
+  "features": [
+    {
+      "id": "FEAT-EMAIL-RESEND",
+      "name": "failed_email_resend",
+      "aliases": ["resend failed email", "email resend", "resend email history"],
+      "ui_screens": ["UI-EMAIL-HISTORY"],
+      "api_endpoints": ["API-EMAIL-RESEND"],
+      "database_tables": ["DB-EMAIL-HISTORY", "DB-EMAIL-RESEND-ATTEMPTS"],
+      "business_rules": ["BR-EMAIL-RESEND"],
+      "automation_tests": ["AT-EMAIL-RESEND"],
+      "known_defects": ["DEF-EMAIL-RETRY"],
+      "test_history": ["TH-EMAIL-RESEND"],
+      "risk_areas": ["Retry duplication could create repeated outbound attempts."],
+      "source_file": "knowledge/features.json"
+    },
+    {
+      "id": "FEAT-POLICY-COMPARISON",
+      "name": "policy_term_comparison",
+      "aliases": ["policy comparison", "compare policy terms", "comparison page"],
+      "ui_screens": ["UI-POLICY-COMPARISON"],
+      "api_endpoints": ["API-POLICY-COMPARISON"],
+      "database_tables": ["DB-POLICY-TERMS", "DB-POLICY-COMPARISONS"],
+      "business_rules": ["BR-POLICY-COMPARISON"],
+      "automation_tests": ["AT-POLICY-COMPARISON"],
+      "known_defects": ["DEF-COMPARISON-SORT"],
+      "test_history": ["TH-POLICY-COMPARISON"],
+      "risk_areas": ["Comparison ordering has regressed before when terms are missing metadata."],
+      "source_file": "knowledge/features.json"
+    },
+    {
+      "id": "FEAT-DOCUMENT-UPLOAD",
+      "name": "document_upload_processing",
+      "aliases": ["document upload", "upload processing", "retry document processing"],
+      "ui_screens": ["UI-DOCUMENT-UPLOAD"],
+      "api_endpoints": ["API-DOCUMENT-UPLOAD", "API-DOCUMENT-STATUS", "API-DOCUMENT-RETRY"],
+      "database_tables": ["DB-DOCUMENT-UPLOADS", "DB-DOCUMENT-PROCESSING-JOBS"],
+      "business_rules": ["BR-DOCUMENT-UPLOAD"],
+      "automation_tests": ["AT-DOCUMENT-UPLOAD"],
+      "known_defects": ["DEF-UPLOAD-FLAKY"],
+      "test_history": ["TH-DOCUMENT-UPLOAD"],
+      "risk_areas": ["Upload status polling has been flaky under heavy backend load."],
+      "source_file": "knowledge/features.json"
+    }
+  ]
+}

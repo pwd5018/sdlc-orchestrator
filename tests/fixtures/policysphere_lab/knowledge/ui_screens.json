@@ -1,0 +1,22 @@
+{
+  "ui_screens": [
+    {
+      "id": "UI-EMAIL-HISTORY",
+      "name": "EmailHistoryPage",
+      "aliases": ["email history page", "failed email history"],
+      "source_file": "knowledge/ui_screens.json"
+    },
+    {
+      "id": "UI-POLICY-COMPARISON",
+      "name": "PolicyComparisonPage",
+      "aliases": ["policy comparison page"],
+      "source_file": "knowledge/ui_screens.json"
+    },
+    {
+      "id": "UI-DOCUMENT-UPLOAD",
+      "name": "DocumentUploadPage",
+      "aliases": ["document upload page"],
+      "source_file": "knowledge/ui_screens.json"
+    }
+  ]
+}

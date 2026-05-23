@@ -1,0 +1,11 @@
+{
+  "feature_description": "Let support users resend failed email deliveries directly from email history and review prior resend attempts.",
+  "mode": "full",
+  "context": {
+    "requested_behavior": [
+      "Resend failed email from email history",
+      "Show retry attempt visibility",
+      "Preserve auditability around resend operations"
+    ]
+  }
+}

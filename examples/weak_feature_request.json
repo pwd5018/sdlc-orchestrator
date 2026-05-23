@@ -1,0 +1,12 @@
+{
+  "feature_description": "We should improve reporting somehow because people said the current process is annoying. Maybe add some kind of export or dashboard enhancement if that makes sense.",
+  "mode": "full",
+  "context": {
+    "product_area": "reporting"
+  },
+  "attachments": [],
+  "notes": [
+    "Need something better soon.",
+    "Not sure who uses it or what format they need."
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "feature_description": "Review a draft feature proposal for exporting release readiness data to CSV. The draft story says: As a program manager, I want to export the filtered dashboard view to CSV so I can share release status updates without manually copying data. The current idea includes a dashboard export action, permission-aware row selection, audit logging, and a user-friendly failure message if the export cannot be generated. The draft is not final yet and should be treated as a review-oriented request.",
+  "mode": "qa_review_only",
+  "context": {
+    "draft_story": "As a program manager, I want to export the filtered dashboard view to CSV so I can share release status updates faster.",
+    "review_focus": [
+      "scope gaps",
+      "quality risks",
+      "missing behavior details"
+    ],
+    "systems_impacted": [
+      "dashboard-ui",
+      "reporting-service"
+    ]
+  },
+  "attachments": [],
+  "notes": [
+    "This request should continue through intake and then run only QA review and finalizer placeholders."
+  ]
+}

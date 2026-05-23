@@ -1,0 +1,13 @@
+{
+  "system_name": "PolicySphere Lab",
+  "supporting_files": {
+    "features": "knowledge/features.json",
+    "ui_screens": "knowledge/ui_screens.json",
+    "api_endpoints": "knowledge/api_endpoints.json",
+    "database_tables": "knowledge/database_tables.json",
+    "business_rules": "knowledge/business_rules.json",
+    "automation_tests": "knowledge/automation_tests.json",
+    "known_defects": "knowledge/known_defects.json",
+    "test_history": "knowledge/test_history.json"
+  }
+}

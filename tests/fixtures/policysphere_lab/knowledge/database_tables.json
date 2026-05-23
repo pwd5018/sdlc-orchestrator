@@ -1,0 +1,40 @@
+{
+  "database_tables": [
+    {
+      "id": "DB-EMAIL-HISTORY",
+      "name": "email_history",
+      "aliases": ["email history table"],
+      "source_file": "knowledge/database_tables.json"
+    },
+    {
+      "id": "DB-EMAIL-RESEND-ATTEMPTS",
+      "name": "email_resend_attempts",
+      "aliases": ["email resend attempts table"],
+      "source_file": "knowledge/database_tables.json"
+    },
+    {
+      "id": "DB-POLICY-TERMS",
+      "name": "policy_terms",
+      "aliases": ["policy terms table"],
+      "source_file": "knowledge/database_tables.json"
+    },
+    {
+      "id": "DB-POLICY-COMPARISONS",
+      "name": "policy_comparisons",
+      "aliases": ["policy comparisons table"],
+      "source_file": "knowledge/database_tables.json"
+    },
+    {
+      "id": "DB-DOCUMENT-UPLOADS",
+      "name": "document_uploads",
+      "aliases": ["document uploads table"],
+      "source_file": "knowledge/database_tables.json"
+    },
+    {
+      "id": "DB-DOCUMENT-PROCESSING-JOBS",
+      "name": "document_processing_jobs",
+      "aliases": ["document processing jobs table"],
+      "source_file": "knowledge/database_tables.json"
+    }
+  ]
+}

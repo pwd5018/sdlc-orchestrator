@@ -1,0 +1,96 @@
+{
+  "feature_description": "Design an automation strategy for a new CSV export capability in the release readiness dashboard. Authorized program managers should be able to export only the currently filtered rows they are allowed to see. The UI will expose an Export CSV action near the active filters, and the backend will generate the CSV using the current filter state plus the authenticated user context. The team wants practical automation recommendations across UI, API, contract, and test-data planning before implementation starts.",
+  "mode": "automation_only",
+  "context": {
+    "ui_interactions": {
+      "entry_point": "Export CSV button beside the dashboard filter bar",
+      "user_flow": [
+        "User applies filters for release train, product line, and environment",
+        "User selects Export CSV",
+        "UI shows non-blocking feedback that export has started or is ready"
+      ],
+      "success_feedback": "Non-blocking toast or inline confirmation after the export request is accepted",
+      "error_feedback": "Inline error or toast when export generation fails or the user lacks permission",
+      "state_dependencies": [
+        "Current filter state must match the exported dataset",
+        "Export action should be disabled or hidden for unauthorized users"
+      ]
+    },
+    "api_service_interactions": {
+      "candidate_endpoint": "POST /reports/readiness/export",
+      "request_inputs": [
+        "active filter set",
+        "requesting user identity from session context",
+        "tenant or program scope if already present in the session"
+      ],
+      "downstream_services": [
+        "reporting-service",
+        "audit-log-service",
+        "authorization-service"
+      ],
+      "expected_output": "CSV file stream or export token plus audit metadata",
+      "contract_concerns": [
+        "Filter names and values must map consistently from UI to service request",
+        "Authorization context must be enforced server-side even if the UI hides the control"
+      ]
+    },
+    "permissions": {
+      "allowed_roles": [
+        "program_manager",
+        "release_coordinator"
+      ],
+      "restricted_roles": [
+        "viewer_without_export_access",
+        "auditor_read_only"
+      ],
+      "business_expectation": "Exported rows must never exceed the user's current visibility scope."
+    },
+    "data_dependencies": {
+      "minimum_sets": [
+        "empty filtered result set",
+        "small filtered result set",
+        "large filtered result set",
+        "mixed-permission result set",
+        "records with null optional fields"
+      ],
+      "important_variations": [
+        "Rows spanning multiple release trains",
+        "Rows partially hidden by row-level permissions",
+        "Rows changed shortly before export"
+      ]
+    },
+    "non_functional_requirements": {
+      "performance": "Standard exports should begin quickly enough that users do not retry unnecessarily.",
+      "reliability": "No partial or corrupted file should be presented as a success.",
+      "security": "Authorization must be enforced on the server for every export request.",
+      "accessibility": "Any success or failure feedback should be available to keyboard and screen-reader users."
+    },
+    "audit_logging_concerns": {
+      "required_events": [
+        "export requested",
+        "export completed",
+        "export failed",
+        "export denied"
+      ],
+      "minimum_fields": [
+        "requesting user or role",
+        "timestamp",
+        "filter summary",
+        "result status"
+      ]
+    },
+    "business_rules": [
+      "Export must include only the currently visible filtered rows.",
+      "Export must respect current role and row-level permissions.",
+      "Audit logging is required for both successful and denied export attempts.",
+      "Scheduled exports are out of scope for this release."
+    ],
+    "systems_impacted": ["dashboard-ui", "reporting-service", "audit-log-service", "authorization-service"]
+  },
+  "attachments": [],
+  "notes": [
+    "Focus on automation strategy and implementation recommendations only, not test code generation.",
+    "Row-level permissions, data accuracy, and audit logging are the highest-risk concerns.",
+    "Prefer maintainable automation recommendations over broad brittle UI coverage."
+  ]
+}

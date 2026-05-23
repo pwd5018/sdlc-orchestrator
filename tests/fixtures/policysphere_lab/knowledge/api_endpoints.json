@@ -1,0 +1,39 @@
+{
+  "api_endpoints": [
+    {
+      "id": "API-EMAIL-RESEND",
+      "name": "Email resend endpoint",
+      "path": "POST /emails/{email_id}/resend",
+      "aliases": ["resend email api", "failed email resend endpoint"],
+      "source_file": "knowledge/api_endpoints.json"
+    },
+    {
+      "id": "API-POLICY-COMPARISON",
+      "name": "Policy comparison endpoint",
+      "path": "GET /policies/comparisons",
+      "aliases": ["comparison api", "policy comparison api"],
+      "source_file": "knowledge/api_endpoints.json"
+    },
+    {
+      "id": "API-DOCUMENT-UPLOAD",
+      "name": "Document upload endpoint",
+      "path": "POST /documents/upload",
+      "aliases": ["document upload api"],
+      "source_file": "knowledge/api_endpoints.json"
+    },
+    {
+      "id": "API-DOCUMENT-STATUS",
+      "name": "Document status endpoint",
+      "path": "GET /documents/{upload_id}/status",
+      "aliases": ["document status api", "upload status api"],
+      "source_file": "knowledge/api_endpoints.json"
+    },
+    {
+      "id": "API-DOCUMENT-RETRY",
+      "name": "Document retry endpoint",
+      "path": "POST /documents/{upload_id}/retry",
+      "aliases": ["document retry api", "retry upload processing"],
+      "source_file": "knowledge/api_endpoints.json"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "feature_description": "Improve policy comparison for missing term metadata and inconsistent comparison sorting.",
+  "mode": "story_only",
+  "context": {
+    "requested_behavior": [
+      "Compare policy terms side by side",
+      "Handle incomplete term metadata gracefully",
+      "Stabilize comparison ordering"
+    ]
+  }
+}

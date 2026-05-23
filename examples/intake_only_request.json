@@ -1,0 +1,20 @@
+{
+  "feature_description": "Add a self-service CSV export feature to the release readiness dashboard so program managers can export the exact filtered records they are reviewing instead of copying them into spreadsheets manually. The export should respect current filters, include a UTC timestamp, honor existing permissions, and record an audit event. The first version should not include scheduled delivery, PDF export, or archive storage.",
+  "context": {
+    "product_area": "release readiness reporting",
+    "target_users": [
+      "program managers",
+      "release coordinators"
+    ],
+    "systems_impacted": [
+      "dashboard-ui",
+      "reporting-service",
+      "audit-log-service"
+    ]
+  },
+  "attachments": [],
+  "notes": [
+    "Primary business goal is to reduce manual reporting effort.",
+    "Please call out permission gaps and audit expectations."
+  ]
+}

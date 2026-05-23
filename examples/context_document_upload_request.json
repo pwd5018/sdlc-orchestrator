@@ -1,0 +1,11 @@
+{
+  "feature_description": "Investigate document upload processing, upload status visibility, and retry behavior for failed processing jobs.",
+  "mode": "automation_only",
+  "context": {
+    "requested_behavior": [
+      "Upload a document",
+      "Track processing status",
+      "Retry failed processing safely"
+    ]
+  }
+}

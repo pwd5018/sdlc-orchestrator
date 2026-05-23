@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/sdlc-orchestrator/feature-intake-packet-schema-v1.json",
+  "title": "Feature Intake Packet v1",
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "packetField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["high", "medium", "low"]
+        },
+        "source": {
+          "type": "string",
+          "enum": ["provided", "inferred", "missing"]
+        },
+        "needs_clarification": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "value",
+        "confidence",
+        "source",
+        "needs_clarification"
+      ]
+    },
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "properties": {
+    "feature_name": {
+      "$ref": "#/$defs/packetField"
+    },
+    "problem_statement": {
+      "$ref": "#/$defs/packetField"
+    },
+    "business_goal": {
+      "$ref": "#/$defs/packetField"
+    },
+    "target_users": {
+      "$ref": "#/$defs/packetField"
+    },
+    "current_behavior": {
+      "$ref": "#/$defs/packetField"
+    },
+    "desired_behavior": {
+      "$ref": "#/$defs/packetField"
+    },
+    "in_scope": {
+      "$ref": "#/$defs/packetField"
+    },
+    "out_of_scope": {
+      "$ref": "#/$defs/packetField"
+    },
+    "business_rules": {
+      "$ref": "#/$defs/packetField"
+    },
+    "data_inputs": {
+      "$ref": "#/$defs/packetField"
+    },
+    "data_outputs": {
+      "$ref": "#/$defs/packetField"
+    },
+    "user_roles_permissions": {
+      "$ref": "#/$defs/packetField"
+    },
+    "systems_impacted": {
+      "$ref": "#/$defs/packetField"
+    },
+    "api_or_contract_impacts": {
+      "$ref": "#/$defs/packetField"
+    },
+    "ui_impacts": {
+      "$ref": "#/$defs/packetField"
+    },
+    "reporting_or_audit_needs": {
+      "$ref": "#/$defs/packetField"
+    },
+    "error_handling_expectations": {
+      "$ref": "#/$defs/packetField"
+    },
+    "edge_cases": {
+      "$ref": "#/$defs/packetField"
+    },
+    "non_functional_requirements": {
+      "$ref": "#/$defs/packetField"
+    },
+    "dependencies": {
+      "$ref": "#/$defs/packetField"
+    },
+    "known_risks": {
+      "$ref": "#/$defs/packetField"
+    },
+    "open_questions": {
+      "$ref": "#/$defs/packetField"
+    },
+    "assumptions": {
+      "$ref": "#/$defs/packetField"
+    },
+    "readiness_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "can_continue": {
+      "type": "boolean"
+    },
+    "blocking_gaps": {
+      "$ref": "#/$defs/stringArray"
+    },
+    "safe_to_generate": {
+      "$ref": "#/$defs/stringArray"
+    },
+    "not_safe_to_generate": {
+      "$ref": "#/$defs/stringArray"
+    }
+  },
+  "required": [
+    "feature_name",
+    "problem_statement",
+    "business_goal",
+    "target_users",
+    "current_behavior",
+    "desired_behavior",
+    "in_scope",
+    "out_of_scope",
+    "business_rules",
+    "data_inputs",
+    "data_outputs",
+    "user_roles_permissions",
+    "systems_impacted",
+    "api_or_contract_impacts",
+    "ui_impacts",
+    "reporting_or_audit_needs",
+    "error_handling_expectations",
+    "edge_cases",
+    "non_functional_requirements",
+    "dependencies",
+    "known_risks",
+    "open_questions",
+    "assumptions",
+    "readiness_score",
+    "can_continue",
+    "blocking_gaps",
+    "safe_to_generate",
+    "not_safe_to_generate"
+  ]
+}

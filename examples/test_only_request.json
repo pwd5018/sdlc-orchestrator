@@ -1,0 +1,55 @@
+{
+  "feature_description": "Add a QA-focused workflow for release readiness CSV export from the dashboard. Program managers currently copy filtered dashboard rows into spreadsheets by hand when preparing stakeholder updates, which causes slow reporting and occasional mistakes. The new behavior should let authorized users export the exact filtered dashboard view as CSV, include the active filters and a UTC export timestamp in the output metadata, and log each export attempt for auditability. The first increment only covers on-demand CSV export from the dashboard and should not include scheduled delivery, PDF export, email distribution, or historical archive storage.",
+  "mode": "test_only",
+  "context": {
+    "feature": "Release readiness dashboard CSV export",
+    "problem": "Manual spreadsheet preparation is slow and error-prone.",
+    "users": [
+      "program managers",
+      "release coordinators"
+    ],
+    "current_behavior": "Users manually copy filtered readiness rows into spreadsheets.",
+    "desired_behavior": "Users export the exact filtered dashboard view as CSV from the UI.",
+    "business_rules": [
+      "Only authorized users can export.",
+      "Exported rows must match the currently applied dashboard filters.",
+      "Export metadata must include a UTC timestamp.",
+      "CSV columns must use the reporting glossary names."
+    ],
+    "systems_impacted": [
+      "release-readiness-dashboard-ui",
+      "reporting-service",
+      "audit-logging-service"
+    ],
+    "roles_permissions": [
+      "Program managers can export visible readiness rows.",
+      "Users must not export rows outside their current visibility scope."
+    ],
+    "data_inputs": [
+      "active dashboard filters",
+      "visible readiness rows",
+      "requesting user identity"
+    ],
+    "data_outputs": [
+      "CSV file",
+      "audit event",
+      "UTC export timestamp metadata"
+    ],
+    "non_functional_requirements": [
+      "Normal exports should begin within 3 seconds for standard filtered result sets.",
+      "Large exports should fail gracefully with a clear user-facing error if limits are exceeded."
+    ],
+    "out_of_scope": [
+      "Scheduled exports",
+      "PDF export",
+      "Historical archive storage",
+      "Email delivery"
+    ]
+  },
+  "attachments": [],
+  "notes": [
+    "QA wants scenarios that cover happy path, permissions, empty results, large results, and export failure handling.",
+    "Edge cases include empty datasets and permission changes during export generation.",
+    "Audit logging should be validated as part of the end-to-end behavior."
+  ]
+}

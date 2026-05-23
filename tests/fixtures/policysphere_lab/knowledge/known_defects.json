@@ -1,0 +1,22 @@
+{
+  "known_defects": [
+    {
+      "id": "DEF-EMAIL-RETRY",
+      "name": "Email resend can duplicate sends after repeated retries",
+      "aliases": ["resend duplicate defect", "email resend retry defect"],
+      "source_file": "knowledge/known_defects.json"
+    },
+    {
+      "id": "DEF-COMPARISON-SORT",
+      "name": "Policy comparison sorting breaks when term metadata is incomplete",
+      "aliases": ["comparison sorting defect"],
+      "source_file": "knowledge/known_defects.json"
+    },
+    {
+      "id": "DEF-UPLOAD-FLAKY",
+      "name": "Document upload status polling is flaky after backend retry",
+      "aliases": ["upload flaky defect", "document retry defect"],
+      "source_file": "knowledge/known_defects.json"
+    }
+  ]
+}

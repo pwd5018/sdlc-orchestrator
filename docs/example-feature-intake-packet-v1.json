@@ -1,0 +1,156 @@
+{
+  "feature_name": {
+    "value": "Export filtered release readiness summary as CSV",
+    "confidence": "high",
+    "source": "provided",
+    "needs_clarification": false
+  },
+  "problem_statement": {
+    "value": "Program managers currently copy release readiness status by hand into spreadsheets, which is slow and error-prone.",
+    "confidence": "high",
+    "source": "provided",
+    "needs_clarification": false
+  },
+  "business_goal": {
+    "value": "Reduce manual reporting effort and give stakeholders a faster way to share release readiness summaries.",
+    "confidence": "high",
+    "source": "provided",
+    "needs_clarification": false
+  },
+  "target_users": {
+    "value": "Primary users are program managers and release coordinators. Secondary users are delivery leads who review the exported report.",
+    "confidence": "high",
+    "source": "provided",
+    "needs_clarification": false
+  },
+  "current_behavior": {
+    "value": "Users filter readiness data in the UI and manually re-enter the visible results into a spreadsheet for distribution.",
+    "confidence": "high",
+    "source": "provided",
+    "needs_clarification": false
+  },
+  "desired_behavior": {
+    "value": "Users can export the currently filtered readiness view as a CSV file with stable column ordering and a timestamp.",
+    "confidence": "high",
+    "source": "provided",
+    "needs_clarification": false
+  },
+  "in_scope": {
+    "value": "Add a CSV export action for the filtered readiness view, include the selected filters in the export metadata row, and log export events for audit visibility.",
+    "confidence": "high",
+    "source": "provided",
+    "needs_clarification": false
+  },
+  "out_of_scope": {
+    "value": "No PDF export, no scheduled exports, no email delivery, and no historical report archive in this milestone.",
+    "confidence": "high",
+    "source": "provided",
+    "needs_clarification": false
+  },
+  "business_rules": {
+    "value": "Export must reflect only the records visible to the requesting user. CSV column names must match the current reporting glossary. Timestamp must use UTC.",
+    "confidence": "high",
+    "source": "provided",
+    "needs_clarification": false
+  },
+  "data_inputs": {
+    "value": "Selected UI filters, current readiness dataset, requesting user identity, and current timestamp.",
+    "confidence": "high",
+    "source": "provided",
+    "needs_clarification": false
+  },
+  "data_outputs": {
+    "value": "CSV file contents, export timestamp, applied filter summary, and audit event metadata.",
+    "confidence": "high",
+    "source": "provided",
+    "needs_clarification": false
+  },
+  "user_roles_permissions": {
+    "value": "Program managers and release coordinators can export. View-only stakeholders cannot export unless they already have access to the underlying readiness records.",
+    "confidence": "medium",
+    "source": "inferred",
+    "needs_clarification": true
+  },
+  "systems_impacted": {
+    "value": "Release readiness dashboard UI, reporting service, and audit logging service.",
+    "confidence": "high",
+    "source": "provided",
+    "needs_clarification": false
+  },
+  "api_or_contract_impacts": {
+    "value": "Likely requires one export endpoint or one extension of the reporting service contract to return CSV content for the active filter set.",
+    "confidence": "medium",
+    "source": "inferred",
+    "needs_clarification": true
+  },
+  "ui_impacts": {
+    "value": "Add an Export CSV action near the existing filter controls and show a non-blocking success or failure message after export starts or fails.",
+    "confidence": "high",
+    "source": "provided",
+    "needs_clarification": false
+  },
+  "reporting_or_audit_needs": {
+    "value": "Track who exported, when they exported, and which filters were applied.",
+    "confidence": "high",
+    "source": "provided",
+    "needs_clarification": false
+  },
+  "error_handling_expectations": {
+    "value": "If export generation fails, show a user-friendly error message, do not produce a partial file, and record the failure in audit logs.",
+    "confidence": "high",
+    "source": "provided",
+    "needs_clarification": false
+  },
+  "edge_cases": {
+    "value": "No records match the filters, filters produce very large result sets, and a user loses permission between viewing and exporting.",
+    "confidence": "high",
+    "source": "provided",
+    "needs_clarification": false
+  },
+  "non_functional_requirements": {
+    "value": "Export should start within 3 seconds for normal result sets and remain reliable for files up to 25,000 rows.",
+    "confidence": "medium",
+    "source": "inferred",
+    "needs_clarification": true
+  },
+  "dependencies": {
+    "value": "Needs reporting service support for CSV generation and confirmation from security on export permissions.",
+    "confidence": "high",
+    "source": "provided",
+    "needs_clarification": false
+  },
+  "known_risks": {
+    "value": "Permission logic may be inconsistent across dashboard viewing and export behavior. Large exports may affect response time.",
+    "confidence": "high",
+    "source": "provided",
+    "needs_clarification": false
+  },
+  "open_questions": {
+    "value": "Should empty-state exports produce a header-only file or block export? Should exported timestamps be visible in the filename as well as the file contents?",
+    "confidence": "high",
+    "source": "provided",
+    "needs_clarification": true
+  },
+  "assumptions": {
+    "value": "Assume existing filtered readiness data is already available in the reporting layer and does not require a new data model for this milestone.",
+    "confidence": "medium",
+    "source": "inferred",
+    "needs_clarification": true
+  },
+  "readiness_score": 82,
+  "can_continue": true,
+  "blocking_gaps": [
+    "Export permission rules need confirmation before final story breakdown.",
+    "API contract shape for CSV export is not yet confirmed."
+  ],
+  "safe_to_generate": [
+    "Draft Jira stories",
+    "Draft acceptance criteria",
+    "Clarification questions",
+    "Initial automation recommendations"
+  ],
+  "not_safe_to_generate": [
+    "Final test cases for permission boundaries",
+    "Final API contract specification"
+  ]
+}
