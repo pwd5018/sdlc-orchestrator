@@ -1,5 +1,37 @@
 # SDLC Orchestrator
 
+## Current App Status
+
+The current FastAPI app is at Milestone 9 and includes real agents for:
+
+- intake
+- requirements
+- jira_story
+- test_design
+- automation_design
+- dev_handoff
+- deterministic context retrieval against a separate local PolicySphere Lab project
+
+Current API endpoints:
+
+- `GET /health`
+- `GET /openapi-action.yaml`
+- `POST /run-intake`
+- `POST /retrieve-context`
+- `POST /run-sdlc-workflow`
+
+Current workflow behavior:
+
+- `run-sdlc-workflow` runs `context_retrieval` first when `POLICYSPHERE_LAB_PATH` is configured
+- the workflow continues normally if context retrieval is unavailable or fails
+- retrieval evidence is exposed in both `steps` and `final_output.context_retrieval_summary`
+- `qa_review` and `finalizer` are still placeholders
+
+Note:
+
+- the milestone sections below are preserved as delivery history
+- use `Current App Status` and the Milestone 8 and 9 sections as the source of truth for the app today
+
 ## Milestone 1: Feature Intake Packet
 
 Milestone 1 defines the master intake structure that downstream SDLC workflows will consume. This repository currently includes the packet design, a JSON Schema, readiness scoring guidance, and an example packet in [docs](/C:/Users/wolf-ai/Workspace/sdlc-orchestrator/docs).
@@ -76,10 +108,13 @@ Set:
 
 ```env
 LLM_PROVIDER=openai
+ORCHESTRATOR_API_KEY=change-me-local-test-key
+PUBLIC_BASE_URL=http://127.0.0.1:8000
 OPENAI_API_KEY=your_key_here
 OPENAI_MODEL_NAME=gpt-4.1-mini
 GROQ_API_KEY=
 GROQ_MODEL_NAME=llama-3.1-8b-instant
+POLICYSPHERE_LAB_PATH=
 ```
 
 ## Provider Selection
@@ -127,6 +162,9 @@ The service exposes:
 
 - `GET /health`
 - `POST /run-intake`
+- `POST /retrieve-context`
+- `POST /run-sdlc-workflow`
+- `GET /openapi-action.yaml`
 
 ## Curl Example
 
@@ -197,6 +235,7 @@ The public API now exposes:
 
 - `GET /health`
 - `POST /run-intake`
+- `POST /retrieve-context`
 - `POST /run-sdlc-workflow`
 
 ### Workflow curl example
@@ -631,10 +670,16 @@ You can print the exact local URLs with:
 
 8. Test the action in GPT preview.
 
+The current action schema exposes:
+
+- `POST /run-intake`
+- `POST /retrieve-context`
+- `POST /run-sdlc-workflow`
+
 Notes:
 
 - `GET /health`, `GET /openapi.json`, and `GET /openapi-action.yaml` stay public.
-- `POST /run-intake` and `POST /run-sdlc-workflow` require `X-API-Key` only when `ORCHESTRATOR_API_KEY` is configured.
+- `POST /run-intake`, `POST /retrieve-context`, and `POST /run-sdlc-workflow` require `X-API-Key` only when `ORCHESTRATOR_API_KEY` is configured.
 - if `ORCHESTRATOR_API_KEY` is empty, the API allows local/dev requests and logs a warning so existing smoke tests keep working.
 
 ## Blocked vs Failed Workflows
